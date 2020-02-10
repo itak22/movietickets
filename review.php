@@ -83,7 +83,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate10)*100/count($viewReview) ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo round(count($rate10)*100/count($viewReview),0) ?>%</div>
+                                
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -96,7 +97,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate9)*100/count($viewReview) ?>%;"><?php echo count($rate9)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate9)*100/count($viewReview) ?>%;"><?php echo round(count($rate9)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -109,7 +110,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate8)*100/count($viewReview) ?>%;"><?php echo count($rate8)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate8)*100/count($viewReview) ?>%;"><?php echo round(count($rate8)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -122,7 +123,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate7)*100/count($viewReview) ?>%;"><?php echo count($rate7)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate7)*100/count($viewReview) ?>%;"><?php echo round(count($rate7)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -135,7 +136,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate6)*100/count($viewReview) ?>%;"><?php echo count($rate6)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate6)*100/count($viewReview) ?>%;"><?php echo round(count($rate6)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -214,8 +215,6 @@
                         <div class="form-group">
                             <input type="hidden" name="loginid" value="<?php echo $loginID ?>">
                             <input type="hidden" name="movieid" value="<?php echo $movieID ?>">
-                            <input type="hidden" name="pagenum" value="<?php foreach($viewReview as $row){ echo ($row['page_id']-1)/10+1; } ?>">
-                            <?php foreach($viewReview as $row){ echo ($row['page_id']-1)/10+1; } ?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="">Nickname:</label>

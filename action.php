@@ -59,9 +59,8 @@ if(isset($_POST['register'])){
     $nickname = $_POST['nickname'];
     $loginID = $_POST['loginid'];
     $movieID = $_POST['movieid'];
-    $pagenum = $_POST['pagenum'];
       
-    $Movie->addReview($review,$rate,$date,$nickname,$loginID,$movieID,$pagenum);
+    $Movie->addReview($review,$rate,$date,$nickname,$loginID,$movieID);
 
 }
 

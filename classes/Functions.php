@@ -288,7 +288,7 @@ class Functions extends Connection{
 
     // displaying the review of a movie
     public function viewReview($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id INNER JOIN page_tbl ON review_tbl.review_id=page_tbl.review_id WHERE movie_tbl.movie_id='$movie_id' ORDER BY review_tbl.review_id DESC";
+        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' ORDER BY review_tbl.review_id DESC";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -303,22 +303,14 @@ class Functions extends Connection{
     }
 
     //adding a review
-    public function addReview($review,$rate,$reviewdate,$nickname,$login_id,$movie_id,$pagenumber){
+    public function addReview($review,$rate,$reviewdate,$nickname,$login_id,$movie_id){
         $sql = "INSERT INTO review_tbl(review,rate,reviewdate,nickname,login_id,movie_id)VALUES('$review','$rate','$reviewdate','$nickname','$login_id','$movie_id')";
         $result = $this->conn->query($sql);
 
-        if($result == TRUE){
-            $review_id = $this->conn->insert_id;
-            $sql2 = "INSERT INTO page_tbl(pagenumber,review_id)VALUES('$pagenumber','$review_id')";
-            $result2 = $this->conn->query($sql2);
-
-            if($result2 == FALSE){
-                die('adding page failed '.$this->conn->error);
-            }else{
-                header('location:review.php?movie_id='.$movie_id);
-            }
-        }else{
+        if($result == FALSE){
             die('adding review failed '.$this->conn->error);
+        }else{
+            header('location:review.php?movie_id='.$movie_id);
         }
 
     }
