@@ -149,7 +149,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate5)*100/count($viewReview) ?>%;"><?php echo count($rate5)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate5)*100/count($viewReview) ?>%;"><?php echo round(count($rate5)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate4)*100/count($viewReview) ?>%;"><?php echo count($rate4)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate4)*100/count($viewReview) ?>%;"><?php echo round(count($rate4)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -175,7 +175,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate3)*100/count($viewReview) ?>%;"><?php echo count($rate3)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate3)*100/count($viewReview) ?>%;"><?php echo round(count($rate3)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -188,7 +188,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate2)*100/count($viewReview) ?>%;"><?php echo count($rate2)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate2)*100/count($viewReview) ?>%;"><?php echo round(count($rate2)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -201,7 +201,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress    ">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate1)*100/count($viewReview) ?>%;"><?php echo count($rate1)*100/count($viewReview) ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo count($rate1)*100/count($viewReview) ?>%;"><?php echo round(count($rate1)*100/count($viewReview),0) ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
