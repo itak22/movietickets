@@ -91,8 +91,8 @@ class Functions extends Connection{
             return FALSE;
         }
     }
-    public function viewCinema(){
-        $sql = "SELECT * FROM cinema_tbl";
+    public function viewTheater(){
+        $sql = "SELECT * FROM theater_tbl";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -105,90 +105,62 @@ class Functions extends Connection{
             return FALSE;
         }
     }
-    public function viewSearch($movie_id,$cinema_id){
-        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON time_tbl.cinema_id=cinema_tbl.cinema_id WHERE movie_tbl.movie_id='$movie_id' AND cinema_tbl.cinema_id='$cinema_id'";
-        $result = $this->conn->query($sql);
+    // public function viewSearch($movie_id,$theater_id){
+    //     $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id WHERE movie_tbl.movie_id='$movie_id' AND theater_tbl.theater_id='$theater_id'";
+    //     $result = $this->conn->query($sql);
 
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewSearch2($movie_id,$cinema_id,$date_id,$time_id){
-        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON time_tbl.cinema_id=cinema_tbl.cinema_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id WHERE movie_tbl.movie_id='$movie_id' AND cinema_tbl.cinema_id='$cinema_id' AND date_tbl.date_id='$date_id' AND time_tbl.time_id='$time_id'";
-        $result = $this->conn->query($sql);
+    //     if($result->num_rows >= 0){
+    //         $row = array();
+    //         while($rows = $result->fetch_assoc()){
+    //             $row[] = $rows;
+    //         }
+    //         return $row;
+    //     }else{
+    //         return FALSE;
+    //     }
+    // }
+    // public function viewSearch2($movie_id,$theater_id,$date_id,$time_id){
+    //     $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id WHERE movie_tbl.movie_id='$movie_id' AND theater_tbl.theater_id='$theater_id' AND date_tbl.date_id='$date_id' AND time_tbl.time_id='$time_id'";
+    //     $result = $this->conn->query($sql);
 
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
+    //     if($result->num_rows >= 0){
+    //         $row = array();
+    //         while($rows = $result->fetch_assoc()){
+    //             $row[] = $rows;
+    //         }
+    //         return $row;
+    //     }else{
+    //         return FALSE;
+    //     }
+    // }
 
-    // adding reservation data
-    public function addReserve($reservedate,$date_id,$movie_id,$cinema_id,$time_id){
-        $sql = "INSERT INTO reserve_tbl(reservedate,date_id,movie_id,cinema_id,time_id)VALUES($reservedate,$date_id,$movie_id,$cinema_id,$time_id)";
-        $result = $this->conn->query($sql);
+    // // adding reservation data
+    // public function addReserve($reservedate,$date_id,$movie_id,$theater_id,$time_id){
+    //     $sql = "INSERT INTO reserve_tbl(reservedate,date_id,movie_id,theater_id,time_id)VALUES($reservedate,$date_id,$movie_id,$theater_id,$time_id)";
+    //     $result = $this->conn->query($sql);
 
-        if($result == FALSE){
-            die('reservation failed '.$this->conn->error);
-        }else{
-            header('location:customer.php');
-        }
-    }
+    //     if($result == FALSE){
+    //         die('reservation failed '.$this->conn->error);
+    //     }else{
+    //         header('location:customer.php');
+    //     }
+    // }
 
-    //adding purchase data
-    public function addPurchase($reservedate,$date_id,$movie_id,$cinema_id,$time_id){
-        $sql = "INSERT INTO reserve_tbl(reservedate,date_id,movie_id,cinema_id,time_id)VALUES($reservedate,$date_id,$movie_id,$cinema_id,$time_id)";
-        $result = $this->conn->query($sql);
+    // // displaying reserveation data
+    // public function viewReserve(){
+    //     $sql = "SELECT * FROM reserve_tbl INNER JOIN time_tbl ON reserve_tbl.time_id=time_tbl.time_id WHERE movie_tbl.moviecategory_id='1' ORDER BY reserve_tbl.reserve_id DESC";
+    //     $result = $this->conn->query($sql);
 
-        if($result == FALSE){
-            die('reservation failed '.$this->conn->error);
-        }else{
-            header('location:purchase.php');
-        }
-    }
-
-    // displaying reserveation data
-    public function viewReserve(){
-        $sql = "SELECT * FROM reserve_tbl INNER JOIN date_tbl ON reserve_tbl.date_id=date_tbl.date_id INNER JOIN movie_tbl ON reserve_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON reserve_tbl.cinema_id=cinema_tbl.cinema_id INNER JOIN time_tbl ON reserve_tbl.time_id=time_tbl.time_id WHERE movie_tbl.moviecategory_id='1' ORDER BY reserve_tbl.reserve_id DESC";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-
-    // displaying purchcase data
-    public function viewPurchase(){
-        $sql = "SELECT * FROM reserve_tbl INNER JOIN date_tbl ON reserve_tbl.date_id=date_tbl.date_id INNER JOIN movie_tbl ON reserve_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON reserve_tbl.cinema_id=cinema_tbl.cinema_id INNER JOIN time_tbl ON reserve_tbl.time_id=time_tbl.time_id WHERE movie_tbl.moviecategory_id='2' ORDER BY reserve_tbl.reserve_id DESC";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
+    //     if($result->num_rows >= 0){
+    //         $row = array();
+    //         while($rows = $result->fetch_assoc()){
+    //             $row[] = $rows;
+    //         }
+    //         return $row;
+    //     }else{
+    //         return FALSE;
+    //     }
+    // }
 
     //displaying movie categories
     public function viewMovieCategory(){
@@ -238,9 +210,9 @@ class Functions extends Connection{
         }
     }
 
-    // displaying today's movie
-    public function viewToday($cinema_id,$date){
-        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON time_tbl.cinema_id=cinema_tbl.cinema_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id WHERE cinema_tbl.cinema_id='$cinema_id' AND date_tbl.date='$date' GROUP BY movie_tbl.movie_id ORDER BY movie_tbl.movie_id DESC";
+    // displaying timeline on the specific date
+    public function viewTimeline($theater_id,$date){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE theater_tbl.theater_id='$theater_id' AND date_tbl.date='$date' GROUP BY movie_tbl.movie_id ORDER BY movie_tbl.movie_id DESC";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -255,8 +227,8 @@ class Functions extends Connection{
     }
 
     //displaying time
-    public function viewTime($cinema_id,$movie_id,$date){
-        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN cinema_tbl ON time_tbl.cinema_id=cinema_tbl.cinema_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id WHERE movie_tbl.moviecategory_id='2' AND cinema_tbl.cinema_id='$cinema_id' AND movie_tbl.movie_id='$movie_id' AND date_tbl.date='$date'";
+    public function viewTime($theater_id,$movie_id,$date){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE theater_tbl.theater_id='$theater_id' AND movie_tbl.movie_id='$movie_id' AND date_tbl.date='$date'";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -316,134 +288,8 @@ class Functions extends Connection{
     }
 
     // displaying the reviews of each rate
-    public function viewRate10($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='10'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate9($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='9'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate8($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='8'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate7($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='7'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate6($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='6'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate5($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='5'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate4($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='4'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate3($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='3'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate2($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='2'";
-        $result = $this->conn->query($sql);
-
-        if($result->num_rows >= 0){
-            $row = array();
-            while($rows = $result->fetch_assoc()){
-                $row[] = $rows;
-            }
-            return $row;
-        }else{
-            return FALSE;
-        }
-    }
-    public function viewRate1($movie_id){
-        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='1'";
+    public function viewOneRate($movie_id,$rate){
+        $sql = "SELECT * FROM review_tbl INNER JOIN movie_tbl ON review_tbl.movie_id=movie_tbl.movie_id WHERE movie_tbl.movie_id='$movie_id' AND review_tbl.rate='$rate'";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -489,10 +335,33 @@ class Functions extends Connection{
         }
     }
     
+    //updating the review data
+    public function updateReview($review_id,$review,$rate,$nickname,$movie_id){
+        $sql = "UPDATE review_tbl SET review='$review',rate='$rate',nickname='$nickname' WHERE review_id='$review_id'";
+        $result = $this->conn->query($sql);
+
+        if($result == FALSE){
+            die('updating review failed '.$this->conn->error);
+        }else{
+            header('location:review.php?movie_id='.$movie_id);
+        }
+    }
+
+    //deleting teh review data
+    public function deleteReview($review_id,$movie_id){
+        $sql = "DELETE FROM review_tbl WHERE review_id='$review_id'";
+        $result = $this->conn->query($sql);
+
+        if($result == FALSE){
+            die('deleting reservation failed '.$this->conn->error);
+        }else{
+            header('location:review.php?movie_id='.$movie_id);
+        }
+    }
 
     // displaying cinema based on cinema_id
-    public function viewCinema2($cinema_id){
-        $sql = "SELECT * FROM cinema_tbl WHERE cinema_id='$cinema_id'";
+    public function viewTheater2($theater_id){
+        $sql = "SELECT * FROM theater_tbl WHERE theater_id='$theater_id'";
         $result = $this->conn->query($sql);
 
         if($result->num_rows >= 0){
@@ -503,6 +372,228 @@ class Functions extends Connection{
             return $row;
         }else{
             return FALSE;
+        }
+    }
+
+    // displaying date
+    public function viewDate($theater_id){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE theater_tbl.theater_id='$theater_id' GROUP BY date_tbl.date_id ORDER BY date_tbl.date ASC";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // adding reservation data
+    public function addReserve($reservedate,$time_id,$seat_id,$login_id){
+        $sql1 = "SELECT * FROM reserve_tbl WHERE time_id='$time_id'  AND seat_id='$seat_id' AND login_id='$login_id'";
+        $result1 = $this->conn->query($sql1);
+
+        if($result1->num_rows == 0){
+            $sql2 = "INSERT INTO reserve_tbl(reservedate,time_id,seat_id,login_id)VALUES($reservedate,$time_id,$seat_id,$login_id)";
+            $result2 = $this->conn->query($sql2);
+
+            if($result2 == FALSE){
+                die('reservation failed '.$this->conn->error);
+            }else{
+                echo "<div class='card w-25 mt-5 mx-auto text-center font-weight-bold text-uppercase'><div class='card-header bg-success'>✔success</div><div class='card-body'><div class='alert alert-success'>reservation successful</div></div><div class='card-footer bg-light'><a href='customer.php' role='button' class='btn btn-secondary btn-block w-50 mx-auto'>my page</a></div></div>";
+            }
+        }else{
+            die("<div class='card w-25 mt-5 mx-auto text-center font-weight-bold text-uppercase'><div class='card-header bg-danger'>⚠error</div><div class='card-body'><div class='alert alert-danger'>already occupied</div></div><div class='card-footer bg-light'><a href='reserve.php?time_id=".$time_id."' role='button' class='btn btn-secondary btn-block w-50 mx-auto'>try again</a></div></div>".$this->conn->error);
+        }
+    }
+
+    // displaying resevation data based on time ID and seat ID
+    public function viewOneReserve($time_id,$seat_id,$login_id){
+        $sql = "SELECT * FROM reserve_tbl INNER JOIN time_tbl ON reserve_tbl.time_id=time_tbl.time_id INNER JOIN seat_tbl ON reserve_tbl.seat_id=seat_tbl.seat_id INNER JOIN user_tbl ON reserve_tbl.login_id=user_tbl.login_id WHERE time_tbl.time_id='$time_id' AND seat_tbl.seat_id='$seat_id' AND user_tbl.login_id='$login_id'";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying seat data
+    public function viewSeat(){
+        $sql = "SELECT * FROM seat_tbl";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying theater based on movie ID
+    public function viewTheater3($movie_id){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE movie_tbl.movie_id='$movie_id' GROUP BY theater_tbl.theater_id";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying timeline based on theater ID
+    public function viewTimeline2($movie_id,$theater_id,$date){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE movie_tbl.movie_id='$movie_id' AND theater_tbl.theater_id='$theater_id' AND date_tbl.date='$date' GROUP BY theater_tbl.theater_id ORDER BY date_tbl.date ASC";
+        $result = $this->conn->query($sql); 
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying time based on theater ID, movie ID and date
+    public function viewTime2($movie_id,$theater_id,$date){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE movie_tbl.movie_id='$movie_id' AND theater_tbl.theater_id='$theater_id' AND date_tbl.date='$date'";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying movies 
+    public function viewMovie4(){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=time_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id GROUP BY movie_tbl.movie_id ORDER BY movie_tbl.movie_id DESC";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying one price data
+    public function viewOnePrice($hall_id){
+        $sql = "SELECT * FROM hall_tbl INNER JOIN price_tbl ON hall_tbl.price_id=price_tbl.price_id WHERE hall_tbl.hall_id='$hall_id'";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    //displaying one timline including movie, theater, time and hall based on time ID
+    public function viewOneTimeline($time_id){
+        $sql = "SELECT * FROM time_tbl INNER JOIN movie_tbl ON time_tbl.movie_id=movie_tbl.movie_id INNER JOIN theater_tbl ON time_tbl.theater_id=theater_tbl.theater_id INNER JOIN date_tbl ON time_tbl.date_id=date_tbl.date_id INNER JOIN hall_tbl ON time_tbl.hall_id=hall_tbl.hall_id WHERE time_tbl.time_id='$time_id'";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying one resevation data based on login ID
+    public function viewReserve($login_id){
+        $sql = "SELECT * FROM reserve_tbl INNER JOIN time_tbl ON reserve_tbl.time_id=time_tbl.time_id INNER JOIN seat_tbl ON reserve_tbl.seat_id=seat_tbl.seat_id INNER JOIN user_tbl ON reserve_tbl.login_id=user_tbl.login_id WHERE user_tbl.login_id='$login_id' ORDER BY reserve_tbl.reserve_id DESC";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    // displaying seat data based on Seat ID
+    public function viewOneSeat($seat_id){
+        $sql = "SELECT * FROM seat_tbl WHERE seat_id='$seat_id'";
+        $result = $this->conn->query($sql);
+
+        if($result->num_rows >= 0){
+            $row = array();
+            while($rows = $result->fetch_assoc()){
+                $row[] = $rows;
+            }
+            return $row;
+        }else{
+            return FALSE;
+        }
+    }
+
+    //deleting reservation data
+    public function deleteReserve($reserve_id){
+        $sql = "DELETE FROM reserve_tbl WHERE reserve_id='$reserve_id'";
+        $result = $this->conn->query($sql);
+
+        if($result == FALSE){
+            die('deleting reservation failed '.$this->conn->error);
+        }else{
+            echo "<div class='card w-25 mt-5 mx-auto text-center font-weight-bold text-uppercase'><div class='card-header bg-success'>✔success</div><div class='card-body'><div class='alert alert-success'>cancellation successful</div></div><div class='card-footer bg-light'><a href='customer.php' role='button' class='btn btn-secondary btn-block w-50 mx-auto'>my page</a></div></div>";
+        }
+    }
+
+    // add a movie
+    public function addMovie($moviename,$moviecategory_id,$image,$trailer,$overview,$runninghours,$runningminutes,$releasedate,$rated_r,$cast,$directors){
+        $target_dir = 'uploads/';
+        $target_file = $target_dir.basename($image);
+        $sql = "INSERT INTO movie_tbl(moviename,moviecategory_id,image,trailer,overview,runninghours,runningminutes,releasedate,rated-r,cast,directors)VALUES('$moviename','$moviecategory_id','$image','$trailer','$overview','$runninghours','$runningminutes','$releasedate','$rated_r','$cast','$directors')";
+        $result = $this->conn->query($sql);
+
+        if($result == FALSE){
+            die('adding movie table failed '.$this->conn->error);
+        }else{
+            move_uploaded_file($_FILES['img']['tmp_name'],$target_file);
+            header('location:movie_staff.php');
         }
     }
 

@@ -12,7 +12,7 @@
 
     <script src="https://kit.fontawesome.com/eb83b1af77.js" crossorigin="anonymous"></script>
   </head>
-  <body class="signin">
+  <body class="register">
       <?php
       include 'menu.php';
       

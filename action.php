@@ -34,23 +34,23 @@ if(isset($_POST['register'])){
         echo "<div class='card w-25 mt-5 mx-auto text-center font-weight-bold text-uppercase'><div class='card-header bg-danger'>⚠error</div><div class='card-body'><div class='alert alert-danger'>password no match</div></div><div class='card-footer bg-light'><a href='password.php' role='button' class='btn btn-secondary btn-block w-50 mx-auto'>try again</a></div></div>";
     }
 
-}elseif(isset($_POST['reserve'])){
-    $cdate = $_POST['cdate'];
-    $movie3 = $_POST['movie3'];
-    $cinema3 = $_POST['cinema3'];
-    $date3 = $_POST['date3'];
-    $time2 = $_POST['time2'];
+// }elseif(isset($_POST['reserve'])){
+//     $cdate = $_POST['cdate'];
+//     $movie3 = $_POST['movie3'];
+//     $theater3 = $_POST['theater3'];
+//     $date3 = $_POST['date3'];
+//     $time2 = $_POST['time2'];
       
-    $Movie->addReserve($cdate,$date3,$movie3,$cinema3,$time2);
+//     $Movie->addReserve($cdate,$date3,$movie3,$theater3,$time2);
 
-}elseif(isset($_POST['purchase'])){
-    $cdate = $_POST['cdate'];
-    $movie3 = $_POST['movie3'];
-    $cinema3 = $_POST['cinema3'];
-    $date3 = $_POST['date3'];
-    $time2 = $_POST['time2'];
+// }elseif(isset($_POST['purchase'])){
+//     $cdate = $_POST['cdate'];
+//     $movie3 = $_POST['movie3'];
+//     $theater3 = $_POST['theater3'];
+//     $date3 = $_POST['date3'];
+//     $time2 = $_POST['time2'];
       
-    $Movie->addPurchase($cdate,$date3,$movie3,$cinema3,$time2);
+//     $Movie->addPurchase($cdate,$date3,$movie3,$theater3,$time2);
 
 }elseif(isset($_POST['post'])){
     $review = $_POST['review'];
@@ -62,7 +62,44 @@ if(isset($_POST['register'])){
       
     $Movie->addReview($review,$rate,$date,$nickname,$loginID,$movieID);
 
-}
+}elseif(isset($_POST['reserve'])){
+    $date = date('Ymd');
+    $time = $_POST['time'];
+    $seat = $_POST['seat'];
+    $loginID = $_POST['loginid'];
+      
+    $Movie->addReserve($date,$time,$seat,$loginID);
 
+}elseif(isset($_POST['updateReview'])){
+    $reviewID = $_POST['reviewid'];
+    $movieID = $_POST['movieid'];
+    $nickname = $_POST['nickname'];
+    $rate = $_POST['rate'];
+    $review = $_POST['review'];
+
+    $Movie->updateReview($reviewID,$review,$rate,$nickname,$movieID);
+
+}elseif(isset($_POST['deleteReview'])){
+    $reviewID = $_POST['reviewid'];
+    $movieID = $_POST['movieid'];
+
+    $Movie->deleteReview($reviewID,$movieID);
+
+}elseif(isset($_POST['addMovie'])){
+    $mcategory = $_POST['mcategory'];
+    $title = $_POST['title'];
+    $file = $_FILES['img']['name'];
+    $trailer = $_POST['trailer'];
+    $overview = $_POST['overview'];
+    $hours = $_POST['hours'];
+    $minutes = $_POST['minutes'];
+    $rdate = $_POST['rdate'];
+    $rrate = $_POST['rrate'];
+    $cast = $_POST['cast'];
+    $directors = $_POST['directors'];
+
+    $Movie->addMovie($title,$mcategory,$file,$trailer,$overview,$hours,$minutes,$rdate,$rrate,$cast,$directors);
+
+}
 
 ?>

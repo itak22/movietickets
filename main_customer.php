@@ -22,12 +22,12 @@
     $loginID = $_SESSION['login_id'];
     $row = $Movie->getOneCustomer($loginID);
 
-    if(empty($_SESSION['login_id'])){
-        header('location:signin.php');
-    }
+    // if(empty($_SESSION['login_id'])){
+    //     header('location:signin.php');
+    // }
 
     $movie = $Movie->viewMovie();
-    $cinema = $Movie->viewCinema();
+    $theater = $Movie->viewTheater();
 
     ?>
       <div class="container-fluid" style="height:900px">
@@ -44,10 +44,10 @@
                     <option value="<?php echo $row['movie_id'] ?>"><?php echo $row['moviename'] ?></option>
                   <?php endforeach; ?>
                 </select>
-                <select name="cinema" id="" class="form-control mt-2">
-                  <option value="" selected disabled>Cinema</option>
-                  <?php foreach($cinema as $row): ?>
-                    <option value="<?php echo $row['cinema_id'] ?>"><?php echo $row['cinemaname'] ?></option>
+                <select name="theater" id="" class="form-control mt-2">
+                  <option value="" selected disabled>Theater</option>
+                  <?php foreach($theater as $row): ?>
+                    <option value="<?php echo $row['theater_id'] ?>"><?php echo $row['theatername'] ?></option>
                   <?php endforeach; ?>
                 </select>
                 <button type="submit" name="search" class="btn btn-secondary btn-block mt-3">Search</button>
@@ -57,9 +57,9 @@
 
             if(isset($_POST['search'])):
               $movie = $_POST['movie'];
-              $cinema = $_POST['cinema'];
+              $theater = $_POST['theater'];
           
-              $search = $Movie->viewSearch($movie,$cinema); ?>
+              $search = $Movie->viewSearch($movie,$theater); ?>
 
               <p class="lead text-center">TIME</p>
               <hr>
@@ -68,7 +68,7 @@
                 <form action="" method="post">
                   <div class="form-group">
                     <input type="hidden" name="movie2" value='<?php echo $row['movie_id']; ?>'>
-                    <input type="hidden" name="cinema2" value='<?php echo $row['cinema_id']; ?>'>
+                    <input type="hidden" name="theater2" value='<?php echo $row['theater_id']; ?>'>
                     <input type="hidden" name="date" value='<?php echo $row['date_id']; ?>'>
                     <input type="hidden" name="time" value='<?php echo $row['time_id']; ?>'>
                     <button type="submit" name="search2" class="btn btn-warning btn-block w-50 mx-auto"><?php echo $row['time']; ?></button>
@@ -87,11 +87,11 @@
         if(isset($_POST['search2'])):
     
           $movie2 = $_POST['movie2'];
-          $cinema2 = $_POST['cinema2'];
+          $theater2 = $_POST['theater2'];
           $date = $_POST['date'];
           $time = $_POST['time'];
       
-          $search2 = $Movie->viewSearch2($movie2,$cinema2,$date,$time); ?>
+          $search2 = $Movie->viewSearch2($movie2,$theater2,$date,$time); ?>
           
           <?php foreach($search2 as $row2): ?>
           <div class="container bg-secondary">
@@ -100,21 +100,20 @@
                 <img src='uploads/<?php echo $row2['image']; ?>' style="height:450px; width:300px">
               </div>
               <div class="col-lg-8 text-center mt-3">
-                <?php echo $row2['trailer']; ?>
                 <table class="table table-bordered table-danger mt-3 w-75 mx-auto">
                   <thead>
                     <th colspan="4">Title: <?php echo $row2['moviename']; ?></th>
                   </thead>
                   <tbody>
                       <td>Date:<br><?php echo $row2['date']; ?></td>
-                      <td>Cinema:<br><?php echo $row2['cinemaname']; ?></td>
+                      <td>Theater:<br><?php echo $row2['theatername']; ?></td>
                       <td>Time:<br><?php echo $row2['time']; ?></td>
                       <td>
                         <form action="action.php" method="post">
                           <div class="form-group">
                             <input type="hidden" name="cdate" value='<?php echo date("Ymd"); ?>'>
                             <input type="hidden" name="movie3" value='<?php echo $row2['movie_id']; ?>'>
-                            <input type="hidden" name="cinema3" value='<?php echo $row2['cinema_id']; ?>'>
+                            <input type="hidden" name="theater3" value='<?php echo $row2['theater_id']; ?>'>
                             <input type="hidden" name="date3" value='<?php echo $row2['date_id']; ?>'>
                             <input type="hidden" name="time2" value='<?php echo $row2['time_id']; ?>'>
                             <?php

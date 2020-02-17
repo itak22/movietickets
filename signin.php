@@ -16,9 +16,9 @@
       <?php
       include 'menu.php';
       
-      if(!empty($_SESSION['login_id'])){
-              header('location:main_customer.php');
-          }
+      // if(!empty($_SESSION['login_id'])){
+      //         header('location:main_customer.php');
+      //     }
 
       ?>
       <div class="container-fluid">
@@ -29,8 +29,8 @@
               <div class="card-body">
                 <form action="action.php" method="post">
                     <div class="form-group">
-                        <input type="email" name="email"  placeholder="Email"class="form-control mt-2">
-                        <input type="password" name="pword" placeholder="Password" class="form-control mt-2">
+                        <input type="email" name="email"  placeholder="Email"class="form-control mt-2" required>
+                        <input type="password" name="pword" placeholder="Password" class="form-control mt-2" required>
                         <button type="submit" name="signin" class="btn btn-secondary btn-block mt-3 w-50 mx-auto">Sign In</button>
                     </div>
                 </form>

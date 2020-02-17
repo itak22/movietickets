@@ -80,14 +80,17 @@ li .input-group-append button{
     width: 300px;
     height: 450px;
 }
+.movie_timeline img{
+    width: 350px;
+    height: 500px   ;
+
+}
+.movie_timeline #list-tab a{
+    border: none;
+}
 .review img{
     width: 200px;
-}
-.bar-container{
-    background-color: #f1f1f1;
-}
-.bar-10,.bar-9,.bar-8,.bar-7,.bar-6,.bar-5,.bar-4,.bar-3,.bar-2,.bar-1{
-    height: 18px; background-color: #4CAF50;
+    height: 300px;
 }
 .review #rate10{
     margin-right: -8px;
@@ -95,21 +98,73 @@ li .input-group-append button{
 .review .row i, .movie_detail .row i{
     color: rgb(252, 237, 32);
 }
-.cinema .col-lg-4{
+.review #review10 i,.review #review9 i,.review #review8 i,.review #review7 i,.review #review6 i,.review #review5 i,.review #review4 i,.review #review3 i,.review #review2 i,.review #review1 i{
+    color: brown;
+    margin-left: -8px;
+}
+.review #reviewnum{
+    background-color: limegreen;
+    color: white;
+    width: 40px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+.theater .col-lg-4{
     padding: 10px;
     text-align: center;
 }
-.cinema img{
+.theater img{
     width: 200px;
     height: 300px;
     margin-bottom: 10px;
 }
-.cinema table{
-    background-color: rgb(243, 237, 152);
+.theater .row a{
+    color: black;
+}
+.theater td a{
+    background-color: lightgrey;
+    border: 1px solid darkgrey
+}
+.theater .container td a{
+    margin: 0 -10px;
+}
+.reserve #vacant{
+    background-color: rgb(38, 165, 38);
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(38, 165, 38);
+    font-size: 24px;
+}
+.reserve #occupied{
+    width: 48px;
+    background-color: grey;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: grey;
+    font-size: 24px;
+}
+.reserve #seat{
+    border: 8px solid darkgrey;
+}
+.reserve .col-lg-1{
+    font-size: 24px;
+}
+.reserve .col-lg-1 div{
+    width: 48px;
+    background-color: rgb(38, 165, 38);
+    border-radius: 8px;
+    text-align: center;
     font-weight: bold;
 }
-.cinema table td:hover{
-    background-color: crimson;
+.reserve .col-lg-1 p{
+    color: white;
+    border-radius: 8px;
+}
+.reserve .col-lg-1 a{
+    text-decoration: none;
 }
 footer{
     opacity: 80%;

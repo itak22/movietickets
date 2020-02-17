@@ -13,79 +13,78 @@
     <script src="https://kit.fontawesome.com/eb83b1af77.js" crossorigin="anonymous"></script>
   </head>
   <body class="customer">
-    <div id="bg">
-        <img src="img/background.jpg" alt="background">
-    </div>
     <?php
     include 'menu_customer.php';
 
-    $rlist = $Movie->viewReserve();
-    $plist = $Movie->viewPurchase();
+    $oneReserve = $Movie->viewReserve($loginID);
 
     ?>
       <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p class="lead display-4 text-light font-weight-bold">Reservation History</p>
-                <table class="table table-secondary text-center w-75 mx-auto">
-                    <thead>
-                        <tr>
-                            <th colspan="6">Latest</th>
-                        </tr>
-                        <tr>
-                            <th>Reservation ID</th>
-                            <th>Reservation Date</th>
-                            <th>Showing Date</th>
-                            <th>movie</th>
-                            <th>cinema</th>
-                            <th>time</th>
-                        </tr>
-                    </thead>
-                    <?php foreach($rlist as $row): ?>
-                    <tbody>
-                        <td><?php echo $row['reserve_id'] ?></td>
-                        <td><?php echo $row['reservedate'] ?></td>
-                        <td><?php echo $row['date'] ?></td>
-                        <td><?php echo $row['moviename'] ?></td>
-                        <td><?php echo $row['cinemaname'] ?></td>
-                        <td><?php echo $row['time'] ?></td>
-                    </tbody>
-                    <?php endforeach; ?>
-                    
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p class="lead display-4 text-light font-weight-bold">Purchase History</p>
-                <table class="table table-secondary text-center w-75 mx-auto">
-                    <thead>
-                        <tr>
-                            <th colspan="6">Latest</th>
-                        </tr>
-                        <tr>
-                            <th>Purchase ID</th>
-                            <th>Purchase Date</th>
-                            <th>Showing Date</th>
-                            <th>movie</th>
-                            <th>cinema</th>
-                            <th>time</th>
-                        </tr>
-                    </thead>
-                    <?php foreach($plist as $row): ?>
-                    <tbody>
-                        <td><?php echo $row['reserve_id'] ?></td>
-                        <td><?php echo $row['reservedate'] ?></td>
-                        <td><?php echo $row['date'] ?></td>
-                        <td><?php echo $row['moviename'] ?></td>
-                        <td><?php echo $row['cinemaname'] ?></td>
-                        <td><?php echo $row['time'] ?></td>
-                    </tbody>
-                    <?php endforeach; ?>
-                    
-                </table>
-            </div>
-        </div>
+          <p class="lead font-weight-bold text-center mt-2">Reservation History</p>
+          <table class="table w-75 mx-auto">
+            <thead>
+              <th>Reservation<br>Date</th>
+              <th>Movie<br>Title</th>
+              <th>Theater</th>
+              <th>Hall</th>
+              <th>Showing<br>Date</th>
+              <th>Starting<br>Time</th>
+              <th>Price</th>
+              <th>Seat</th>   
+              <th></th>
+              <th></th>
+            </thead>
+            <?php foreach($oneReserve as $row):
+        
+              $timeID = $row['time_id'];
+              $oneTimeline = $Movie->viewOneTimeline($timeID);
+              
+              $seatID = $row['seat_id'];
+              $oneSeat = $Movie->viewOneSeat($seatID);
+
+              ?>
+
+            <tbody>
+              <td><?php echo $row['reservedate'] ?></td>
+              <?php foreach($oneTimeline as $row2):
+              
+              $hallID = $row2['hall_id'];
+              $onePrice = $Movie->viewOnePrice($hallID); ?>
+
+                <td><?php echo $row2['moviename'] ?></td>
+                <td><?php echo $row2['theatername'] ?></td>
+                <td><?php echo $row2['hallname'] ?></td>
+                <td><?php echo $row2['date'] ?></td>
+                <td><?php echo $row2['startinghours']; echo ':'; echo $row2['startingminutes']; echo $row2['startingam/pm'] ?></td>
+                <?php foreach($onePrice as $row2): ?>
+                  <td><?php echo $row2['price'] ?></td>
+                <?php endforeach ?>
+              <?php endforeach ?>
+              <?php foreach($oneSeat as $row2): ?>
+                <td><?php echo $row2['seatrow']; echo $row2['seatnumber']; ?></td>
+              <?php endforeach ?> 
+              <td><a href="#cancel<?php echo $row['reserve_id'] ?>" role="button" class="btn btn-danger" data-toggle="modal">Cancel</a></td>
+              <div class="modal fade" id="cancel<?php echo $row['reserve_id'] ?>">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5>Cancellation</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you sure to cancel the reservation?</p>
+                        </div>
+                        <div class="modal-footer">
+                           <a href="delete_reserve.php?reserve_id=<?php echo $row['reserve_id'] ?>" role="button" class="btn btn-warning">Yes</a>
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>                       
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <?php endforeach ?> 
+          </table>      
       </div>
     <?php
     include 'footer.php';

@@ -43,7 +43,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="row">
-                        <?php foreach($movie2 as $row): ?>
+                        <?php foreach($movie3 as $row): ?>
                             <div class="col-lg-3">
                                 <a href="movie_detail.php?movie_id=<?php echo $row['movie_id'] ?>"><img src="uploads/<?php echo $row['image'] ?>" alt="starwars"></a>
                                 <p><?php echo $row['moviename'] ?></p>

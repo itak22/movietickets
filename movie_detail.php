@@ -43,8 +43,7 @@
                                 <a href="review.php?movie_id=<?php echo $row['movie_id'] ?>" class="ml-3">Review >></a> 
                             <?php endif ?>
                         <br>
-                        <a href="" role="button" class="btn btn-danger mt-4">Reserve Ticket</a>
-                        <a href="" role="button" class="btn btn-danger ml-2 mt-4">Purchase Ticket</a>
+                        <a href="movie_timeline.php?movie_id=<?php echo $row['movie_id'] ?>" role="button" class="btn btn-danger mt-4">Reserve Ticket</a>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center">
