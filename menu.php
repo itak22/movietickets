@@ -1,5 +1,5 @@
 <?php
-include 'classes/Functions.php';
+include 'action.php';
 
 ?>
 

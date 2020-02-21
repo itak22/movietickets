@@ -14,7 +14,11 @@
   </head>
   <body class="review">
     <?php
-    include 'menu_customer.php';
+    include 'menu_staff.php';
+
+    if ($userAccess['status'] == 'U') {
+        echo "<script>window.location.href='main_customer.php'</script>";
+    }
 
     $movieID = $_GET['movie_id'];
     $viewOneMovie = $Movie->viewOneMovie($movieID);
@@ -70,7 +74,7 @@
 
                         <br>
                         <p class="float-left mr-2" id="reviewnum"><?php echo count($viewReview2) ?></p>
-                        <a href="review.php?movie_id=<?php echo $row['movie_id'] ?>"><?php echo $row['moviename'] ?></a>
+                        <a href="review_staff.php?movie_id=<?php echo $row['movie_id'] ?>"><?php echo $row['moviename'] ?></a>
                         <br>
                     <?php endforeach ?>
                 </div>
@@ -119,7 +123,7 @@
                                                 <textarea name="review" id="" cols="30" rows="10" class="form-control" required></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" name="post" class="btn btn-warning btn-blockn mt-3">POST</button>
+                                        <button type="submit" name="postA" class="btn btn-warning btn-blockn mt-3">POST</button>
                                     </div>
                                 </form>
                             </div>
@@ -129,12 +133,10 @@
                 <hr>
                 <?php foreach($viewReview as $row): ?>
                     <div class="ml-4">
-                        <?php if($row['login_id'] == $loginID): ?>
-                            <div class="float-right">
-                                <a href="#edit<?php echo $row['review_id'] ?>" role="button" class="btn btn-warning" data-toggle="modal">Edit</a>
-                                <a href="#delete<?php echo $row['review_id'] ?>" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
-                            </div>
-                        <?php endif ?>
+                        <div class="float-right">
+                            <a href="#edit<?php echo $row['review_id'] ?>" role="button" class="btn btn-warning" data-toggle="modal">Edit</a>
+                            <a href="#delete<?php echo $row['review_id'] ?>" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
+                        </div>
                         <p><?php echo $row['nickname'] ?> | <?php echo $row['reviewdate'] ?></p>
                         <p class="mt-4">
                             <i class="fas fa-star"></i> <b><?php echo $row['rate'] ?></b> / 10
@@ -185,7 +187,7 @@
                                                     <textarea name="review" id="" cols="30" rows="10" class="form-control" required><?php echo $row['review'] ?></textarea>
                                                 </div>
                                             </div>
-                                            <button type="submit" name="updateReview" class="btn btn-warning btn-blockn mt-3">UPDATE</button>
+                                            <button type="submit" name="updateReviewA" class="btn btn-warning btn-blockn mt-3">UPDATE</button>
                                         </div>
                                     </form>
                                 </div>
@@ -209,7 +211,7 @@
                                     <div class="form-group">
                                         <input type="hidden" name="reviewid" value="<?php echo $row['review_id'] ?>">
                                         <input type="hidden" name="movieid" value="<?php echo $movieID ?>">
-                                        <button type="submit" name="deleteReview" class="btn btn-warning mt-3">Yes</button>
+                                        <button type="submit" name="deleteReviewA" class="btn btn-warning mt-3">Yes</button>
                                     </div>
                                 </form>    
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>                       
@@ -231,7 +233,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate10)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate10)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate10)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate10)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -244,7 +246,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate9)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate9)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate9)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate9)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -257,7 +259,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate8)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate8)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate8)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate8)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -270,7 +272,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate7)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate7)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate7)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate7)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -283,7 +285,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate6)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate6)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate6)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate6)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -296,7 +298,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate5)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate5)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate5)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate5)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -309,7 +311,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate4)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate4)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate4)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate4)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -322,7 +324,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate3)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate3)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate3)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate3)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -335,7 +337,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate2)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate2)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate2)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate2)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -348,7 +350,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress mt-1">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate1)*100/count($viewReview); } ?>%"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate1)*100/count($viewReview),0); } ?>%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: <?php if(count($viewReview) == 0){ echo '0'; }else{ echo count($viewRate1)*100/count($viewReview); } ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php if(count($viewReview) == 0){ echo '0'; }else{ echo round(count($viewRate1)*100/count($viewReview),0); } ?>%</div>
                             </div>
                         </div>
                         <div class="col-md-3">

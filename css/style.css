@@ -7,7 +7,7 @@ header{
     font-size: 12px;
     opacity: 80%;
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 li span{
     font-size: 24px;
@@ -50,10 +50,10 @@ li .input-group-append button{
 .main_customer .container{
     border: 3px solid white;
 }
-.index #carouselExampleIndicators img{
+.index #carouselExampleIndicators img,.main_customer #carouselExampleIndicators img{
     height: 350px;
 }
-.index #carouselExampleIndicators{
+.index #carouselExampleIndicators,.main_customer #carouselExampleIndicators{
     width: 50%;
     margin: 0 auto;
 }
@@ -168,6 +168,8 @@ li .input-group-append button{
 }
 footer{
     opacity: 80%;
+    position: relative;
+    z-index: 1;
 }
 footer p{
     font-size: 12px;

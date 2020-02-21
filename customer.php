@@ -46,19 +46,14 @@
 
             <tbody>
               <td><?php echo $row['reservedate'] ?></td>
-              <?php foreach($oneTimeline as $row2):
-              
-              $hallID = $row2['hall_id'];
-              $onePrice = $Movie->viewOnePrice($hallID); ?>
+              <?php foreach($oneTimeline as $row2): ?>
 
                 <td><?php echo $row2['moviename'] ?></td>
                 <td><?php echo $row2['theatername'] ?></td>
                 <td><?php echo $row2['hallname'] ?></td>
                 <td><?php echo $row2['date'] ?></td>
-                <td><?php echo $row2['startinghours']; echo ':'; echo $row2['startingminutes']; echo $row2['startingam/pm'] ?></td>
-                <?php foreach($onePrice as $row2): ?>
-                  <td><?php echo $row2['price'] ?></td>
-                <?php endforeach ?>
+                <td><?php echo $row2['startinghours']; echo ':'; echo $row2['startingminutes']; echo $row2['startingam_pm'] ?></td>
+                <td><?php echo $row2['price'] ?>P</td>
               <?php endforeach ?>
               <?php foreach($oneSeat as $row2): ?>
                 <td><?php echo $row2['seatrow']; echo $row2['seatnumber']; ?></td>
@@ -77,8 +72,13 @@
                           <p>Are you sure to cancel the reservation?</p>
                         </div>
                         <div class="modal-footer">
-                           <a href="delete_reserve.php?reserve_id=<?php echo $row['reserve_id'] ?>" role="button" class="btn btn-warning">Yes</a>
-                           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>                       
+                            <form action="action.php" method="post">
+                              <div class="form-group">
+                                  <input type="hidden" name="reserveid" value="<?php echo $row['reserve_id'] ?>">
+                                  <button type="submit" name="deleteReserve" class="btn btn-warning mt-3">Yes</button> 
+                              </div>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>                       
                         </div>
                     </div>
                 </div>

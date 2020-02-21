@@ -47,8 +47,8 @@
             <li class="nav-item">
               <a class="nav-link" href="theater5.php?theater_id=<?php echo $theaterID ?>"><?php echo date('D', strtotime(' +4 day')) ?><br><?php echo date('M d', strtotime(' +4 day')) ?></a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link"><?php echo date('D', strtotime(' +5 day')) ?><br><?php echo date('M d', strtotime(' +5 day')) ?></a>
+            <li class="nav-item">
+              <a class="nav-link active"><?php echo date('D', strtotime(' +5 day')) ?><br><?php echo date('M d', strtotime(' +5 day')) ?></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="theater7.php?theater_id=<?php echo $theaterID ?>"><?php echo date('D', strtotime(' +6 day')) ?><br><?php echo date('M d', strtotime(' +6 day')) ?></a>
@@ -60,12 +60,7 @@
         <?php foreach($timeline as $row):
 
           $movieID = $row['movie_id'];
-          $time = $Movie->viewTime($theaterID,$movieID,$date);
-          
-          $hallID = $row['hall_id'];
-          $price = $Movie->viewOnePrice($hallID);
-
-          ?>
+          $time = $Movie->viewTime($theaterID,$movieID,$date); ?>
 
           <div class="col-lg-4 mb-2">
             <div>
@@ -77,11 +72,11 @@
                 <tbody>
                   <tr class="font-weight-bold">
                     <td colspan="2"><?php echo $row['hallname'] ?></td>
-                    <td colspan="2"><?php foreach($price as $row){ echo $row['price']; } ?></td>
+                    <td colspan="2"><?php echo $row['price'] ?>P</td>
                   </tr>
                   <tr>
                     <?php foreach($time as $row): ?>
-                      <td><a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn text-dark"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm']; ?></a></td>
+                      <td><a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn text-dark"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm']; ?></a></td>
                     <?php endforeach ?>
                   </tr>
                 </tbody>

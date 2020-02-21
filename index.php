@@ -13,16 +13,13 @@
     <script src="https://kit.fontawesome.com/eb83b1af77.js" crossorigin="anonymous"></script>
   </head>
     <body class="index">
-      <!-- <div id="bg">
-        <img src="img/background.jpg" alt="background">
-      </div> -->
+      <div id="bg2">
+        <img src="img/background2.jpg" style="height: 100vh;" alt="background">
+      </div>
       <?php
       include 'menu_index.php';
   
       ?>
-      <div id="bg2">
-        <img src="img/background2.jpg" alt="background">
-      </div>
       <div id="carouselExampleIndicators" class="carousel slide bg-light" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -31,7 +28,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="uploads/birdsofprey_bg.jpg" class="d-block w-100" alt="">
+            <img src="uploads/birdsofprey_bg.jpeg" class="d-block w-100" alt="">
           </div>
           <div class="carousel-item">
             <img src="uploads/thekingsman_bg.png" class="d-block w-100" alt="">
@@ -52,10 +49,12 @@
       <div class="container-fluid">
         
       </div>
-      <?php
-      include 'footer.php';
+      <div class="fixed-bottom">
+        <?php
+        include 'footer.php';
 
-      ?>
+        ?>
+      </div>  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

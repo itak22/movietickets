@@ -24,15 +24,15 @@
         
         $categoryID = $row['moviecategory_id']; 
         
-        $movie2 = $Movie->viewMovie2($categoryID);
-        $movie3 = $Movie->viewMovie3($categoryID); ?>
+        $latestMovie = $Movie->viewLatestMovie($categoryID);
+        $otherMovie = $Movie->viewOtherMovie($categoryID); ?>
 
-        <p class="lead font-weight-bold mt-2"><?php echo $row['moviecategory'] ?></p>
+        <p class="lead font-weight-bold mt-3"><?php echo $row['moviecategory'] ?></p>
         <div id="carouselExampleInterval<?php echo $row['moviecategory_id'] ?>" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
-                        <?php foreach($movie2 as $row): ?>
+                        <?php foreach($latestMovie as $row): ?>
                         <div class="col-lg-3">
                             <a href="movie_detail.php?movie_id=<?php echo $row['movie_id'] ?>"><img src="uploads/<?php echo $row['image'] ?>" alt="starwars"></a>
                             <p><?php echo $row['moviename'] ?></p>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="row">
-                        <?php foreach($movie3 as $row): ?>
+                        <?php foreach($otherMovie as $row): ?>
                             <div class="col-lg-3">
                                 <a href="movie_detail.php?movie_id=<?php echo $row['movie_id'] ?>"><img src="uploads/<?php echo $row['image'] ?>" alt="starwars"></a>
                                 <p><?php echo $row['moviename'] ?></p>

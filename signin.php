@@ -16,10 +16,15 @@
       <?php
       include 'menu.php';
       
-      // if(!empty($_SESSION['login_id'])){
-      //         header('location:main_customer.php');
-      //     }
-
+      if(!empty($_SESSION['login_id'])){
+        $row = $Movie->getOneUser($_SESSION['login_id']);
+        if($row['status']=='U'){
+          echo "<script>window.location.href='main_customer.php'</script>";
+        }else{
+          echo "<script>window.location.href='main_staff.php'</script>";
+        }
+      }
+     
       ?>
       <div class="container-fluid">
           <div class="card w-25 mx-auto mt-5">

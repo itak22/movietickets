@@ -30,7 +30,7 @@
                 <?php foreach($seat as $row):
                 
                 $seatID = $row['seat_id']; 
-                $oneReserve = $Movie->viewOneReserve($timeID,$seatID,$loginID); ?>
+                $oneReserve = $Movie->viewOneReserve($timeID,$seatID); ?>
 
                 <div class="col-lg-1">
                     <div>
@@ -57,23 +57,20 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?php foreach($oneTimeline as $row2):
-
-                        $hallID = $row2['hall_id'];
-                        $onePrice = $Movie->viewOnePrice($hallID); ?>
+                        <?php foreach($oneTimeline as $row2): ?>
 
                             <div class="row">
                                 <div class="col-lg-6">
                                     <p>Title: <?php echo $row2['moviename'] ?></p>
                                     <p>Theater: <?php echo $row2['theatername'] ?></p>
                                     <p>Hall: <?php echo $row2['hallname'] ?></p>
+                                    <p>Seat: <?php echo $row['seatrow']; echo $row['seatnumber'] ?></p> 
                                 </div>
                                 <div class="col-lg-6">
-                                    <p>Starting Time: <?php echo $row2['startinghours']; echo ':'; echo $row2['startingminutes']; echo $row2['startingam/pm'] ?></p>
-                                    <?php foreach($onePrice as $row2): ?>
-                                        <p>Price: <?php echo $row2['price'] ?></p>
-                                    <?php endforeach ?>                          
-                                    <p>Seat: <?php echo $row['seatrow']; echo $row['seatnumber'] ?></p>                           
+                                    <p>Date: <?php echo $row2['date'] ?></p>
+                                    <p>Starting Time: <?php echo $row2['startinghours']; echo ':'; echo $row2['startingminutes']; echo $row2['startingam_pm'] ?></p>
+                                    <p>Ending Time: <?php echo $row2['endinghours']; echo ':'; echo $row2['endingminutes']; echo $row2['endingam_pm'] ?></p>
+                                    <p>Price: <?php echo $row2['price'] ?></p>                          
                                 </div>             
                             </div>
                         <?php endforeach ?>                    

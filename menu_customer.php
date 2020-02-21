@@ -22,17 +22,7 @@ $theater = $Movie->viewTheater();
             <li class="nav-item">
                 <a href="main_customer.php" class="text-light text-decoration-none"><span>T</span>ak<span>T</span>ickets <div>.com</div></a>
             </li>
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0">
-                    <div class="input-group w-75">
-                        <input type="text" class="form-control" placeholder="Movie or Theater" aria-label="Search" aria-describedby="button-addon2" style="font-size: 12px">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-light" type="serach" id="button-addon2" style="font-size: 12px"><i class="fas fa-search">Search</i></button>
-                        </div>
-                    </div>
-                </form>
-            </li>
-            <li class="nav-item mt-3">
+            <li class="nav-item mt-3 ml-5">
                 <a href="movie.php" class="text-light text-decoration-none">MOVIE</a>
             </li>
             <li class="nav-item dropdown mt-2">

@@ -91,12 +91,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M') ?></p>
-                                    <p class="lead"><?php echo $row['hallname'] ?></p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_1 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -106,12 +111,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +1 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_2 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -121,12 +131,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +2 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_3 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -136,12 +151,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +3 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_4 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -151,12 +171,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +4 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_5 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -166,12 +191,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +5 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_6 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
@@ -181,12 +211,17 @@
 
                                 <div class="ml-4">
                                     <p class="lead font-weight-bold"><?php echo date('D d M', strtotime(' +6 day')) ?></p>
-                                    <p class="lead">Cinema 1</p>
+                                    <p class="lead float-left mr-4"><b><?php echo $row['hallname'] ?></p>
+                                    <p class="lead"><?php echo $row['price'] ?>P</b></p>
+                                    <div class="row text-center">
                                     <?php foreach($time2_7 as $row): ?>
-                                    <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn jumbotron">
-                                        <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam/pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam/pm'] ?>
-                                    </a>    
+                                        <div class="col-lg-3">
+                                            <a href="reserve.php?time_id=<?php echo $row['time_id'] ?>" role="button" class="btn btn-block jumbotron">
+                                            <p class="lead font-weight-bold"><?php echo $row['startinghours']; echo ':'; echo $row['startingminutes']; echo $row['startingam_pm'] ?></p>~<?php echo $row['endinghours']; echo ':'; echo $row['endingminutes']; echo $row['endingam_pm'] ?>
+                                            </a>
+                                        </div>
                                     <?php endforeach ?>
+                                    </div>
                                     <hr> 
                                 </div>   
                             <?php endforeach ?>
